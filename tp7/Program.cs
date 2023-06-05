@@ -1,65 +1,50 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using EspacioCalculadora;
-calculadora instance = new calculadora();
-System.Console.WriteLine("Bienvendio a la calculadora!!");
-int cont = 1;
-double dato = ValidaIngreso();
-static double ValidaIngreso()
-{
-    double dato = 0;
-    do
-    {
-        System.Console.WriteLine("Ingrese un valor numerico use , para la fraccion ");
-    } while (!double.TryParse(System.Console.ReadLine(), out dato));
-    return dato;
-}
-System.Console.WriteLine("Ingrese que operacion quiere realizar:");
-System.Console.WriteLine("0-Suma");
-System.Console.WriteLine("1-Resta");
-System.Console.WriteLine("2-Division");
-System.Console.WriteLine("3-Multiplicacion");
-System.Console.WriteLine("4-Limpiar");
-int operacion;
-int.TryParse(System.Console.ReadLine(), out operacion);
-while (cont != 0)
-{
-    switch (operacion)
-    {
-        case 0:
-            instance.Sumar(dato);
-            break;
-        case 1:
-            instance.Resta(dato);
-            break;
-        case 2:
-            instance.Division(dato);
-            break;
-        case 3:
-            instance.Multiplicacion(dato);
-            break;
-        case 4:
-            instance.Limpiar();
-            break;
-        default:
-            System.Console.WriteLine("Usted ah ingresado mal la operacion, por favor vuelva a ingresar.");
-            break;
-    }
-    System.Console.WriteLine("El resultado acumulado en esta iteracion es:" + instance.Resultado);
-    System.Console.WriteLine("Ingrese que operacion quiere realizar:");
-    System.Console.WriteLine("0-Suma");
-    System.Console.WriteLine("1-Resta");
-    System.Console.WriteLine("2-Division");
-    System.Console.WriteLine("3-Multiplicacion");
-    System.Console.WriteLine("4-Limpiar");
-    System.Console.WriteLine("5-Terminar con la calculadora");
-    int.TryParse(System.Console.ReadLine(), out operacion);
-    if (operacion == 5)
-    {
-        cont = 0;
-    }
-    else if (operacion != 4)
-    {
-        dato = ValidaIngreso();
-    }
+using Empleados;
+string nombre, apellido;
+char genero, estadoCivil;
+double sueldoBasico;
+DateTime fechaNacimiento, fechaIngreso;
+Cargos cargo;
+nombre = "Miguel";
+apellido = "Veliz";
+genero = 'M';
+estadoCivil = 'C';
+sueldoBasico = 2500123123123210;
+fechaNacimiento = new DateTime(1955, 1, 9);
+fechaIngreso = new DateTime(2010, 12, 19);
+cargo = Cargos.Especialista;
 
-}
+Empleado empleado1 = new Empleado(nombre,apellido,fechaNacimiento,estadoCivil,genero,fechaIngreso,sueldoBasico,cargo);
+
+nombre = "Jose";
+apellido = "Boggio";
+genero = 'F';
+estadoCivil = 'S';
+sueldoBasico = 500000;
+fechaNacimiento = new DateTime(1965, 1, 29);
+fechaIngreso = new DateTime(2010, 3, 2);
+cargo = Cargos.Ingeniero;
+Empleado empleado2 = new Empleado(nombre,apellido,fechaNacimiento,estadoCivil,genero,fechaIngreso,sueldoBasico,cargo);
+
+nombre = "Florencia";
+apellido = "Veliz";
+genero = 'F';
+estadoCivil = 'C';
+sueldoBasico = 1000000;
+fechaNacimiento = new DateTime(1956, 1, 23);
+fechaIngreso = new DateTime(1991, 1, 2);
+cargo = Cargos.Investigador;
+
+Empleado empleado3 = new Empleado(nombre,apellido,fechaNacimiento,estadoCivil,genero,fechaIngreso,sueldoBasico,cargo);
+
+double montoTotal = empleado1.CalcularSalario() + empleado2.CalcularSalario() + empleado3.CalcularSalario();
+
+Console.WriteLine("Nombre: "+empleado3.Nombre);
+Console.WriteLine("Apellido: "+empleado3.Apellido);
+Console.WriteLine("Fecha de Nacimiento: "+empleado3.FechaNacimiento);
+Console.WriteLine("Genero: "+empleado3.Genero);
+Console.WriteLine("Estado Civil: : "+empleado3.EstadoCivil);
+Console.WriteLine("Fecha de Ingreso: "+empleado3.FechaIngreso);
+Console.WriteLine("Sueldo basico: "+empleado3.SueldoBasico);
+Console.WriteLine("Cargo: "+empleado3.Cargo);
+Console.WriteLine("Salario: "+empleado3.CalcularSalario());
